@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_template_index', 'trans': 'menu.templates'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    <h1>{{ 'menu.templates'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.template'|trans({'count': results|length}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    <a href="{{ path('app_template_add') }}" class="button" title="{{ 'tooltip.add_template'|trans }}">
+                        <i class="fa fa-plus fa-fw"></i>
+                    </a>
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.fields'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                        <tr class="list-element resize-element" data-title="{{ result.template.name }}" data-filter-target="element">
+                            <td>
+                                <a href="{{ path('app_template_show', {'id' : result.template.id}) }}">
+                                    <strong>{{ result.template.name }}</strong>
+                                </a>
+                            </td>
+                            <td>{{ 'counter.field'|trans({'count': result.fieldsCounter}) }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

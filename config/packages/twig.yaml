@@ -1,0 +1,11 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes:
+        - 'App/_partials/_form/_default.html.twig'
+        - 'App/_partials/_form/_cropper.html.twig'
+        - 'App/_partials/_form/_scraper.html.twig'
+        - 'App/_partials/_form/_switch.html.twig'
+
+when@test:
+    twig:
+        strict_variables: true

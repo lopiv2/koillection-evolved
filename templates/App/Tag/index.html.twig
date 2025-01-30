@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.tags_shared'|trans({'username':  app.request.get('username')}),
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter-ajax">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    <h1>{{ 'menu.tags'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.tag'|trans({'count': tagsCount}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_tag_category_index') }}" class="button"
+                           title="{{ 'tooltip.manage_tag_categories'|trans }}">
+                            <i class="fa fa-gears fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_tag_index'}) }}
+                        {{ include('App/_partials/_visibility.html.twig') }}
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form_start(form, {attr: {"data-filter-ajax-target": "form"}}) }}
+                        {% do form.term.setRendered %}
+                        <input type="text"
+                               id="search_tag_term"
+                               name="search_tag[term]"
+                               class="filter-input"
+                               data-action="keyup->filter-ajax#filter"
+                               placeholder="{{ 'filter.by_name'|trans }}"
+                               autocomplete="off"
+                               value="{{ form.term.vars.value }}"
+                        >
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block" data-filter-ajax-target="content">
+            <div class="right">
+                <button data-target="modal-delete"
+                        class="btn waves-effect waves-light modal-trigger"
+                        data-path="{{ path('app_tag_delete_unused_tags') }}"
+                        data-message="{{ 'message.delete.unused_tag'|trans }}"
+                >
+                    {{ 'btn.delete_unused_tags'|trans }}
+                </button>
+            </div>
+
+            {{ include('App/Tag/_tags_table.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

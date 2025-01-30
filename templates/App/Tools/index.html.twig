@@ -1,0 +1,76 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tools_index', 'trans': 'menu.tools'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'menu.tools'|trans() }}</h1>
+    </div>
+
+    <div class="content-block">
+        <div class="block-element btn-holder">
+            <h2 class="header">{{ 'title.exports'|trans }}</h2>
+            <a href="{{ path('app_tools_export_printable_list') }}" target="_blank"
+               class="btn waves-effect waves-light">
+                <i class="fa fa-print fa-fw"></i>{{ 'btn.export_printable_list'|trans }}
+            </a>
+            <a href="{{ path('app_tools_export_csv') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-file-text fa-fw"></i>{{ 'btn.export_csv'|trans }}
+            </a>
+            <a href="{{ path('app_tools_export_images') }}" class="btn waves-effect waves-light">
+                <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
+            </a>
+        </div>
+
+        <div class="block-element">
+            <h2 class="header">
+                {{ 'title.inventories'|trans }}
+            </h2>
+
+            <div class="btn-holder">
+                <a href="{{ path('app_inventory_add') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-plus fa-fw"></i>{{ 'btn.add_inventory'|trans }}
+                </a>
+            </div>
+
+            <div>
+                <table class="centered striped">
+                    <thead>
+                        <tr>
+                            <th>{{ 'label.name'|trans }}</th>
+                            <th>{{ 'label.number_of_items'|trans }}</th>
+                            <th>{{ 'label.completion'|trans }}</th>
+                            <th>{{ 'label.created_at'|trans }}</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for inventory in inventories %}
+                            <tr class="list-element resize-element">
+                                <td>
+                                    <a href="{{ path('app_inventory_show', {id: inventory.id}) }}">{{ inventory.name }}</a>
+                                </td>
+                                <td>{{ inventory.totalItemsCount }}</td>
+                                {% if inventory.totalItemsCount == 0 %}
+                                    <td>100 %</td>
+                                {% else %}
+                                    <td>{{ ((inventory.checkedItemsCount*100)/inventory.totalItemsCount)|round(2) }}%
+                                    </td>
+                                {% endif %}
+                                <td>{{ inventory.createdAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

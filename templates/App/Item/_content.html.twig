@@ -1,0 +1,177 @@
+<div class="collection-header">
+    <div class="title-block">
+        <h1>
+            {{ item.name }}
+            {% if item.quantity > 1 %}
+                <span class="quantity">(x{{ item.quantity }})</span>
+            {% endif %}
+        </h1>
+        {% if displayCollection is defined and displayCollection == true %}
+            <div>
+                {{ 'label.item.from_collection'|trans }}
+                <a href="{{ path('app_collection_show'|applyContext, {id: item.collection.id} ) }}">
+                    {{ item.collection.title }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if context == 'default' %}
+            <div class="btn-holder">
+                <a href="{{ path('app_item_edit', {'id': item.id}) }}" class="button"
+                   title="{{ 'tooltip.edit'|trans }}">
+                    <i class="fa fa-pencil fa-fw"></i>
+                </a>
+                {{ include('App/_partials/_icon/_delete.html.twig', {
+                    path: path('app_item_delete', {id: item.id}),
+                    message: 'message.delete.item'
+                }) }}
+                {% if isFeatureEnabled('loans') %}
+                    <a href="{{ path('app_item_loan', {'id': item.id}) }}" class="button"
+                       title="{{ 'tooltip.loan_item'|trans }}">
+                        <i class="fa fa-exchange fa-fw"></i>
+                    </a>
+                {% endif %}
+                {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_item_show', entity: item}) }}
+                {{ include('App/_partials/_visibility.html.twig', {'visibility': item.finalVisibility}) }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="content-block">
+    <div class="item-wrapper">
+        <div class="slider-container item-image-container {{ item.dataTexts|length > 0 ? 'margin-right-30' }}"
+             data-controller="slider">
+            <div class="slider-frame" data-controller="lightbox">
+                <a href="{{ asset(item.image|default('build/images/default.png')) }}"
+                   data-sub-html="{{ 'label.main_image'|trans }}" data-slider-target="image" data-id="{{ item.id }}"
+                   class="active">
+                    <div>
+                        <img src="{{ preload(asset(item.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                             title="{{ 'label.main_image'|trans }}"
+                        >
+                        <span class="image-label" data-slider-target="label">{{ 'label.main_image'|trans }}</span>
+                    </div>
+                </a>
+
+                {% for datum in item.dataImages %}
+                    {% if datum.type == 'video' %}
+                        <a data-video='{"source":
+                                           [{"src":"{{ preload(asset(datum.video), {as: 'video'}) }}", "type":"{{ datum.video|mimetype }}"}],
+                                           "attributes":{
+                                               "preload":true,
+                                               "controls": true
+                                           }
+                                       }'
+                           data-sub-html="{{ datum.label }}"
+                           data-slider-target="image"
+                           data-id="{{ datum.id }}"
+                           data-download-url="{{ asset(datum.video) }}"
+                           data-lg-size="1280-720"
+                        >
+                            <div>
+                                <video title="{{ datum.label }}" controls>
+                                    <source src="{{ preload(asset(datum.video), {as: 'video'}) }}"  />
+                                </video>
+                                <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                            </div>
+                        </a>
+                    {% else %}
+                        <a href="{{ asset(datum.image|default('build/images/default.png')) }}"
+                           data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                            <div>
+                                <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                     title="{{ 'label.main_image'|trans }}"
+                                >
+                                <span class="image-label" data-slider-target="label">{{ datum.label }}</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+
+            {% if item.dataImages|length > 0 %}
+                <ul class="slider-elements">
+                    <li>
+                        <img src="{{ preload(asset(item.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                             class="active"
+                             data-id="{{ item.id }}"
+                             data-slider-target="thumbnail"
+                             data-action="click->slider#display"
+                        >
+                    </li>
+
+                    {% for datum in item.dataImages %}
+                        <li>
+                            {% if datum.type == 'video' %}
+                                <video width="100" data-id="{{ datum.id }}"
+                                       data-slider-target="thumbnail"
+                                       data-action="click->slider#display"
+                                       title="{{ datum.label }}"
+                                >
+                                    <source src="{{ preload(asset(datum.video), {as: 'video'}) }}" />
+                                </video>
+                            {% else %}
+                                <img src="{{ preload(asset(datum.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                                     data-id="{{ datum.id }}"
+                                     data-slider-target="thumbnail"
+                                     data-action="click->slider#display"
+                                     title="{{ datum.label }}"
+                                >
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="data">
+            {% set underlinedTags = getUnderlinedTags(item.dataTexts) %}
+            {% for datum in item.dataTexts %}
+                <div class="datum-row">
+                    <span class="label">{{ datum.label }} :</span>
+                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% if isFeatureEnabled('tags') and item.tags is not empty %}
+    <div class="tags-block">
+        <ul class="nav nav-tags">
+            {% for tag in item.tags|naturalSorting %}
+                <li class="tag chip">
+                    <a href="{{ path('app_tag_show'|applyContext, {'id' : tag.id}) }}">
+                        {{ tag.label }}
+                    </a>
+                    {% if tag.category is not empty %}
+                        <span class="tag-category-color" style="background-color: {{ tag.category.color }}"
+                              title="{{ tag.category.label }}"></span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% if item.allRelatedItems is not empty %}
+    <div class="related-items">
+        <div>{{ 'label.list_related_items'|trans }} :</div>
+        <ul>
+            {% for relatedItem in item.allRelatedItems|naturalSorting %}
+                <li>
+                    <a href="{{ path('app_item_show'|applyContext, {id: relatedItem.id}) }}">
+                        <img src="{{ preload(asset(relatedItem.imageSmallThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
+                             alt="{{ relatedItem.name }}"
+                        >
+                    </a>
+                    <span class="image-label" title="{{ relatedItem.name }}">{{ relatedItem.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,0 +1,18 @@
+<div class="outlined s10 m5 datum-input-field" data-controller="datum-list">
+    <input type="hidden"
+           id="data_{{ iteration }}_value"
+           name="{{ entity }}[data][{{ iteration }}][value]"
+           {% if datum is defined %}value="{{ datum.value }}"{% endif %}
+           placeholder=" "
+           data-datum-list-target="input"
+           data-additional-data-target="value"
+    >
+
+    <div data-datum-list-target="elementsContainer">
+
+    </div>
+
+    <button type="button" class="btn right" data-action="click->datum-list#addElement">
+        {{ 'btn.add_list_element'|trans }}
+    </button>
+</div>

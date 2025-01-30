@@ -1,0 +1,62 @@
+{% extends 'layout.html.twig' %}
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_sign_index', 'trans': 'menu.signs'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.signs_shared'|trans({'username':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <div>
+            <h1>{{ 'menu.signs'|trans() }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.signs'|trans({'count': signs|length}) }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div></div>
+
+    <div class="btn-holder">
+        {% if context == 'default' %}
+            {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_sign_index'}) }}
+            {{ include('App/_partials/_visibility.html.twig') }}
+        {% endif %}
+    </div>
+
+    <div class="content-block">
+        <div id="collection-items" class="grid-container-items" data-controller="lightbox">
+            {% for sign in signs %}
+                <div>
+                    <a class="collection-item element valign-wrapper"
+                       href="{{ asset(sign.image|default('build/images/default.png')) }}"
+                       data-lightbox-target="image"
+                       data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
+                       data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
+                    >
+                        <img src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">
+                    </a>
+                    {% if app.user.displayItemsNameInGridView|default(false) == true %}
+                        <span class="item-name">{{ sign.label }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

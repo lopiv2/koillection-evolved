@@ -1,0 +1,17 @@
+{% apply spaceless %}
+    {{ photo.title }}
+
+    <br>
+
+    {% if photo.place %}
+        <i class="fa fa-map-marker fa-fw"></i> {{ photo.place }}
+    {% endif %}
+    {% if photo.place and photo.takenAt %} &nbsp;/&nbsp; {% endif %}
+    {% if photo.takenAt %}
+        <i class="fa fa-calendar fa-fw"></i> {{ photo.takenAt|date(app.user.dateFormat|default('Y-m-d')) }}
+    {% endif %}
+
+    <br>
+
+    <span>{{ photo.comment }}</span>
+{% endapply %}

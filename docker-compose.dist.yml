@@ -1,0 +1,49 @@
+#This docker-compose file is provided for dev purposes
+version: '3'
+
+services:
+    #FPM image
+    koillection:
+        container_name: koillection
+        build:
+            dockerfile: Dockerfile.dev
+        restart: always
+        ports:
+            - 81:80
+        environment:
+            - APP_ENV=dev
+            - APP_DEBUG=1
+            - DB_DRIVER=pdo_pgsql
+            - DB_NAME=koillection
+            - DB_HOST=postgresql
+            - DB_PORT=5432
+            - DB_USER=postgres
+            - DB_PASSWORD=password
+            - DB_VERSION=15
+            - PHP_TZ=Europe/Paris
+            - HTTPS_ENABLED=0
+        depends_on:
+            - mysql
+            - postgresql
+        volumes:
+            - "./docker/volumes/koillection/public/uploads:/var/www/koillection/public/uploads"
+            - ./:/var/www/koillection
+
+    postgresql:
+        container_name: postgresql
+        image: postgres:17
+        environment:
+            - POSTGRES_DB=koillection
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+        volumes:
+            - "./docker/volumes/postgresql:/var/lib/postgresql/data"
+
+    mysql:
+        container_name: mysql
+        image: mysql:latest
+        environment:
+            - MYSQL_DATABASE=koillection
+            - MYSQL_ROOT_PASSWORD=password
+        volumes:
+            - "./docker/volumes/mysql:/var/lib/mysql"

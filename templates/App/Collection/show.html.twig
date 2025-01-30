@@ -1,0 +1,144 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.collections_shared'|trans({'username':  app.request.get('username')}),
+            'image': collection.image
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    {% if collection.image != null %}
+                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h1>
+                        {{ collection.title }}
+                    </h1>
+
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'count': getCachedValues(collection).counters.items|default(0) }) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': getCachedValues(collection).counters.children|default(0) }) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_item_add', {'collection': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.add_item'|trans }}">
+                            <i class="fa fa-plus fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_add', {'parent': collection.id} ) }}" class="button"
+                           title="{{ 'tooltip.add_collection'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_edit', {'id': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_icon/_delete.html.twig', {
+                            path: path('app_collection_delete', {id: collection.id}),
+                            message: 'message.delete.collection'
+                        }) }}
+                        {% if isFeatureEnabled('tags') %}
+                            <a href="{{ path('app_collection_batch_tagging', {'id': collection.id}) }}" class="button"
+                               title="{{ 'tooltip.tag'|trans }}">
+                                <i class="fa fa-terminal fa-fw"></i>
+                            </a>
+                        {% endif %}
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_show', entity: collection}) }}
+                        <a href="{{ path('app_collection_items'|applyContext, {'id': collection.id}) }}" class="button"
+                           title="{{ 'tooltip.items'|trans }}">
+                            <i class="fa fa-ellipsis-h fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
+                    {% endif %}
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text" placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <!-- Additional data -->
+            {% if collection.data is not empty or getCachedValues(collection).prices|default(null) is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.infos'|trans }}</h2>
+                    <div class="row">
+                        {% if collection.data is not empty %}
+                            {% set underlinedTags = getUnderlinedTags(collection.data) %}
+                            {% for datum in collection.data %}
+                                <div class="datum-row s12 l5 xl4">
+                                    <span class="label">{{ datum.label }} :</span>
+                                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        {% if getCachedValues(collection).prices|default(null) is not empty %}
+                            {% for label, currencies in getCachedValues(collection).prices %}
+                                <div class="datum-row s12 l5 xl4">
+                                    <span class="label">{{ label }} :</span>
+                                    {% for currency, value in currencies %}
+                                        {{ value|format_currency(currency) }} {% if loop.last == false %} + {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Child collections -->
+            {% if children is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ collection.childrenDisplayConfiguration.label|default('title.children'|trans) }}</h2>
+                    {{ include('App/Collection/_collections_' ~ collection.childrenDisplayConfiguration.displayMode ~ '.html.twig', {
+                        'collections': children,
+                        'displayConfiguration': collection.childrenDisplayConfiguration
+                    }) }}
+                </div>
+            {% endif %}
+
+            <!-- Collection's items -->
+            {% if items is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ collection.itemsDisplayConfiguration.label|default('title.items'|trans) }}</h2>
+                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {
+                        'items': items,
+                        'displayConfiguration': collection.itemsDisplayConfiguration
+                    }) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ renderFooter(collection) }}
+{% endblock %}
+

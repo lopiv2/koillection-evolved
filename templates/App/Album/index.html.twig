@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_album_index', 'trans': 'menu.albums'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.albums_shared'|trans({'username':  app.request.get('username')}),
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    <h1>{{ 'menu.albums'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.photo'|trans({'count': photosCounter}) }}</li>
+                        <li>{{ 'counter.album'|trans({'count': albumsCounter}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_album_add') }}" class="button" title="{{ 'tooltip.add_album'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_album_edit_index') }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_icon/_share.html.twig', { route: 'app_shared_album_index' }) }}
+                        {{ include('App/_partials/_visibility.html.twig') }}
+                    {% endif %}
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="input-field filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            {{ include('App/Album/_albums_' ~ getContextUser().albumsDisplayConfiguration.displayMode ~ '.html.twig', {'albums': albums}) }}
+        </div>
+    </div>
+{% endblock %}

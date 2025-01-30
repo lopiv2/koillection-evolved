@@ -1,0 +1,126 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_admin_index', 'trans': 'menu.admin'},
+    {'route': 'app_admin_index', 'trans': 'menu.overview'}
+]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'menu.admin'|trans }}</h1>
+    </div>
+
+    <div class="content-block">
+        {{ include('/App/Admin/_tabs.html.twig', {current: 'overview'}) }}
+
+        <div class="block-element">
+            <h2 class="header">{{ 'title.overview'|trans }}</h2>
+
+            <div class="row statistics">
+                <div class="s12 m4 xl2">
+                    {% set percent = ((totalSpace - freeSpace) * 100 / totalSpace)|round(0, 'floor') %}
+                    <div class="counter">
+                        <span class="label">{{ percent }}<span class="smaller">%</span></span>
+                    </div>
+                    <div>{{ 'label.space_used'|trans({'used': (totalSpace - freeSpace)|bytes(0), 'total': totalSpace|bytes(0)}) }}</div>
+                    <div>{{ 'label.space_free'|trans({'free': freeSpace|bytes(0)}) }}</div>
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.users }}</div>{{ 'counter.without_number.users'|trans({'count': counters.users}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.collections }}</div>{{ 'counter.without_number.collections'|trans({'count': counters.collections}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.items }}</div>{{ 'counter.without_number.items'|trans({'count': counters.items}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.tags }}</div>{{ 'counter.without_number.tags'|trans({'count': counters.tags}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.wishlists }}</div>{{ 'counter.without_number.wishlists'|trans({'count': counters.wishlists}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.wishes }}</div>{{ 'counter.without_number.wishes'|trans({'count': counters.wishes}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.albums }}</div>{{ 'counter.without_number.albums'|trans({'count': counters.albums}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.photos }}</div>{{ 'counter.without_number.photos'|trans({'count': counters.photos}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ counters.signs }}</div>{{ 'counter.without_number.signs'|trans({'count': counters.signs}) }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <div class="counter">{{ getSpaceUsedByUsers()|bytes }}</div>{{ 'label.space_used_by_koillection'|trans }}
+                </div>
+            </div>
+        </div>
+
+        <div class="block-element">
+            <h2 class="header">{{ 'title.config'|trans }}</h2>
+            <div class="row statistics">
+                <div class="s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/koillection.png') }}" alt="Koillection logo">
+                    <div class="counter">{{ currentRelease }}</div>
+                    {{ 'label.release'|trans }}
+
+                    {% if latestRelease is not null and currentRelease != latestRelease %}
+                        <br>
+                        <a href="https://github.com/koillection/koillection/releases/tag/{{ latestRelease }}">{{ 'label.outdated_release'|trans({'release': latestRelease}) }}</a>
+                        <br>
+                        {{ 'label.required_php_version'|trans({'version': requiredPhpVersionForLatestRelease}) }}
+                        <i class="fa fa-{{ isRequiredPhpVersionForLatestReleaseOk ? 'check font-green' : 'close font-red' }} fa-fw"></i>
+                    {% else %}
+                        <br>
+                        {{ 'label.up_to_date_release'|trans }}
+                    {% endif %}
+                </div>
+                <div class="s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/php.png') }}" alt="PHP logo">
+                    <div class="counter">{{ phpVersion }}</div>{{ 'label.php_version'|trans }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/symfony.png') }}" alt="Symfony logo">
+                    <div class="counter">{{ symfonyVersion }}</div>{{ 'label.symfony_version'|trans }}
+                </div>
+                <div class="s12 m4 xl2">
+                    <img width="65px" height="65px" src="{{ asset('/build/images/logos/api-platform.png') }}" alt="Api Platform logo">
+                    <div class="counter">{{ apiPlatformVersion }}</div>{{ 'label.apiplatform_version'|trans }}
+                </div>
+                {% if frankenPhpVersion is not null %}
+                    <div class="s12 m4 xl2">
+                        <img width="65px" height="65px" src="{{ asset('/build/images/logos/frankenphp.png') }}" alt="FrankenPHP logo">
+                        <div class="counter">{{ frankenPhpVersion }}</div>{{ 'label.frankenphp_version'|trans }}
+                    </div>
+                {% endif %}
+                <div class="s12 m4 xl2">
+                    <div class="counter">
+                        <i class="fa fa-{{ isOpcacheAvailable ? 'check font-green' : 'close font-red' }} fa-fw"></i>
+                    </div>{{ 'label.is_opcache_available'|trans }}
+                </div>
+            </div>
+        </div>
+
+        <div class="block-element">
+            <h2 class="header">{{ 'title.tools'|trans }}</h2>
+            <div class="row btn-holder">
+                <a href="{{ path('app_admin_export_images') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-file-image-o fa-fw"></i>{{ 'btn.export_images'|trans }}
+                </a>
+                <a href="{{ path('app_admin_refresh_caches') }}" class="btn waves-effect waves-light">
+                    <i class="fa fa-refresh fa-fw"></i>{{ 'btn.refresh_caches'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

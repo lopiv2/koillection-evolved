@@ -1,0 +1,24 @@
+<div id="modal-delete" data-controller="modal--delete" class="modal modal-custom" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">{{ 'modal.title.delete'|trans }}</span>
+                <i class="fa fa-close fa-fw modal-action modal-close right"></i>
+            </div>
+
+            <div class="modal-body"></div>
+
+            <div class="modal-footer">
+                <div class="right">
+                    <form name="form" method="post">
+                        <button type="submit" class="modal-action modal-close waves-effect waves-light btn s2">
+                            {{ 'btn.ok'|trans }}
+                        </button>
+                        <a class="modal-close waves-effect waves-light btn btn-cancel s2">{{ 'btn.cancel'|trans }}</a>
+                        <input type="hidden" id="form__token" name="form[_token]" value="{{ csrf_token('form') }}">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

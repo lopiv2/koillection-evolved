@@ -1,0 +1,22 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+api_controllers:
+  resource:
+    path: ../api/Controller/
+    namespace: Api\Controller
+  type: attribute
+
+kernel:
+  resource: ../src/Kernel.php
+  type: attribute
+
+app_security_logout:
+  path: /logout
+
+api_authentication_token:
+  path: /api/authentication_token
+  methods: ['POST']

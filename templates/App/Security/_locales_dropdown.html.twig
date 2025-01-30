@@ -1,0 +1,16 @@
+<div class="locale-dropdown" data-controller="dropdown">
+    <span data-action="click->dropdown#show">
+        <span class="current-locale">{{ getLocaleLabel(app.request.locale)|trans }}</span>
+        <i class="fa fa-language fa-fw"></i>
+    </span>
+
+    <ul class="dropdown-menu hidden" data-dropdown-target="menu">
+        {% for key, locale in getLocales() %}
+            <li>
+                <a href="{{ path(app.request.attributes.get('_route')) }}?_locale={{ key }}">
+                   {{ locale|trans }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

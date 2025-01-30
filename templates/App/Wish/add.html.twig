@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_wishlist_index', 'trans': 'menu.wishlists'}], wishlist, 'breadcrumb.add_wish') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <h1>{{ 'title.add_wishlist_item'|trans({'wishlist': wishlist.name}) }}</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="content-block">
+        {{ include('App/Wish/_form.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,226 @@
+{% block form_errors %}
+    {%- for error in errors -%}
+        <div class="helper-text helper-text-error error-helper" data-error="wrong">{{ error.message }}</div>
+    {%- endfor -%}
+{% endblock form_errors %}
+
+{% block form_row %}
+    {% if suggestions is defined and suggestions is not empty %}
+        <div class="input-field outlined" data-controller="suggestions">
+            {{- form_errors(form) -}}
+            {{- form_widget(form, {attr: {'data-suggestions-target': 'input', 'placeholder': ' '}}) -}}
+            {{- form_label(form, null, {label_attr: {'data-suggestions-target': 'label'}}) -}}
+
+            <div class="suggestions">
+                {{ 'label.suggestions'|trans }}
+                {% for suggestion in suggestions %}
+                    <span class="suggestion"
+                          data-action="click->suggestions#fillInputWithSuggestion"
+                          data-suggestion="{{ suggestion }}"
+                    >
+                        {{ suggestion }}
+                    </span>
+                    {{ not loop.last ? ',' }}
+                {% endfor %}
+            </div>
+            {{- form_help(form) -}}
+        </div>
+    {% else %}
+        <div class="input-field outlined">
+            {{- form_widget(form, {attr: {'placeholder': ' '}}) -}}
+            {{- form_label(form) -}}
+            {%- for error in errors -%}
+                <div class="helper-text helper-text-error error-helper" data-error="wrong">{{ error.message }}</div>
+            {%- endfor -%}
+            {{- form_help(form) -}}
+        </div>
+    {% endif %}
+{% endblock form_row %}
+
+{% block file_widget %}
+    {% apply spaceless %}
+        <div class="row row-file">
+            <div class="s12 l10 offset-l1 xl8 offset-xl2">
+                <div data-controller="preview">
+                    <label class="file-label">
+                        {% if form.parent.vars.value.image is not null %}
+                            <img data-preview-target="image" class="preview-image"
+                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"
+                                 data-scraping-target="imagePreview"
+                            />
+                        {% else %}
+                            <img data-preview-target="image" class="preview-image"
+                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
+                                 data-scraping-target="imagePreview"
+                            />
+                        {% endif %}
+                        <input {{ block('widget_attributes') }}
+                                data-action="change->preview#load"
+                                type="file"
+                                class="hidden"
+                                accept="image/png, image/jpeg, image/jpg, image/webp, image/avif"
+                        />
+                    </label>
+                </div>
+            </div>
+        </div>
+    {% endapply %}
+{% endblock file_widget %}
+
+{% block _display_configuration_columns_entry_row %}
+    {% apply spaceless %}
+        <div class="column">
+            <p>
+                <span class="handle {{ form.vars.data == false ? 'visibility-none' }}">
+                    <i class="fa fa-arrows-v fa-fw"></i>
+                </span>
+                <label>
+                    <input type="checkbox"
+                           value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }}
+                           data-action="change->columns-list#check"
+                    />
+                    <span>{{ form.vars.value }}</span>
+                </label>
+            </p>
+            {{- form_errors(form) -}}
+        </div>
+    {% endapply %}
+{% endblock _display_configuration_columns_entry_row %}
+
+{% block _collection_itemsDisplayConfiguration_columns_entry_row %}
+    {% apply spaceless %}
+        <div class="column">
+            <p>
+                <span class="handle {{ form.vars.data == false ? 'visibility-none' }}">
+                    <i class="fa fa-arrows-v fa-fw"></i>
+                </span>
+                <label>
+                    <input type="checkbox"
+                           value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }}
+                           data-action="change->columns-list#check"
+                    />
+                    <span>{{ form.vars.value }}</span>
+                </label>
+            </p>
+            {{- form_errors(form) -}}
+        </div>
+    {% endapply %}
+{% endblock _collection_itemsDisplayConfiguration_columns_entry_row %}
+
+{% block _collection_childrenDisplayConfiguration_columns_entry_row %}
+    {% apply spaceless %}
+        <div class="column">
+            <p>
+                <span class="handle {{ form.vars.data == false ? 'visibility-none' }}">
+                    <i class="fa fa-arrows-v fa-fw"></i>
+                </span>
+                <label>
+                    <input type="checkbox"
+                           value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }}
+                           data-action="change->columns-list#check"
+                    />
+                    <span>{{ form.vars.value }}</span>
+                </label>
+            </p>
+            {{- form_errors(form) -}}
+        </div>
+    {% endapply %}
+{% endblock _collection_childrenDisplayConfiguration_columns_entry_row %}
+
+{% block checkbox_row %}
+    {% apply spaceless %}
+        <p class="checkbox">
+            <label>
+                <input type="checkbox"
+                       value="{{ form.vars.value }}" {{ block('widget_attributes') }} {{ form.vars.data == true ? 'checked="checked"' }} />
+                <span>{{ label|trans }}</span>
+                {% if help %}
+                    <div class="helper-text" data-error="wrong" data-success="right">{{ help|trans }}</div>
+                {% endif %}
+            </label>
+        </p>
+        {{- form_errors(form) -}}
+    {% endapply %}
+{% endblock checkbox_row %}
+
+{% block _choice_list_choices_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/ChoiceList/_value_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _choice_list_choices_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
+{% block _template_fields_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/Field/_field_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _template_fields_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
+{% block _scraper_dataPaths_entry_row %}
+    {% apply spaceless %}
+        {{ include('App/Scraper/_data_path_prototype.html.twig', { 'form': form }) }}
+    {% endapply %}
+{% endblock %}
+
+{% block _scraper_dataPaths_row %}
+    {% apply spaceless %}
+        {% for child in form %}
+            {{ form_row(child) }}
+        {% endfor %}
+    {% endapply %}
+{% endblock %}
+
+{% block _tag_category_widget %}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}{% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}>
+        {% set options = choices %}
+        <option value="" {% if not render_preferred_choices|default(false) and value == '' %} selected="selected"{% endif %}>
+        </option>
+        {% for choice in options %}
+            <option data-color="{{ choice.data.color }}"
+                    value="{{ choice.value }}"{% if choice.attr %}{% with { attr: choice.attr } %}{{ block('attributes') }}{% endwith %}{% endif %}{% if not render_preferred_choices|default(false) and choice is selectedchoice(value) %} selected="selected"{% endif %}>
+                {{ choice_translation_domain is same as(false) ? choice.label : choice.label|trans({}, choice_translation_domain) }}
+            </option>
+        {% endfor %}
+    </select>
+{% endblock _tag_category_widget %}
+
+{% block choice_widget_collapsed %}
+    {% if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) %}
+        {% set required = false %}
+    {% endif %}
+    <select {{ block('widget_attributes') }}
+            {% if multiple %} multiple="multiple"{% endif %}
+            {% if choices|length <= 10 %} data-minimum-results-for-search="-1"{% endif %}
+            data-select-target="select"
+    >
+        {% if placeholder is not none %}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {% endif %}
+        {% if preferred_choices|length > 0 %}
+            {% set options = preferred_choices %}
+            {% set render_preferred_choices = true %}
+            {{- block('choice_widget_options') -}}
+            {% if choices|length > 0 and separator is not none %}
+                <option disabled="disabled">{{ separator }}</option>
+            {% endif %}
+        {% endif %}
+        {% set options = choices %}
+        {% set render_preferred_choices = false %}
+        {{- block('choice_widget_options') -}}
+    </select>
+{% endblock choice_widget_collapsed %}

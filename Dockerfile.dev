@@ -1,0 +1,65 @@
+FROM ubuntu:noble
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Environment variables
+ENV APP_ENV='dev'
+ENV PUID='1001'
+ENV PGID='1001'
+ENV USER='koillection'
+
+COPY ./docker/entrypoint-dev.sh /entrypoint.sh
+
+# Install some basics dependencies
+RUN apt-get update && \
+    apt-get install -y curl lsb-release software-properties-common gnupg2 vim libnss3 nss-plugin-pem ca-certificates && \
+# Add User and Groups
+    addgroup --gid "$PGID" "$USER" && \
+    adduser --gecos '' --no-create-home --disabled-password --uid "$PUID" --gid "$PGID" "$USER" && \
+# PHP
+    add-apt-repository ppa:ondrej/php && \
+# Nodejs
+    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
+    NODE_MAJOR=21 && \
+    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
+# Install packages
+    apt-get update && \
+    apt-get install -y \
+    ca-certificates \
+    apt-transport-https \
+    git \
+    unzip \
+    nginx-light \
+    openssl \
+    php8.4 \
+    php8.4-apcu \
+    php8.4-curl \
+    php8.4-pgsql \
+    php8.4-mysql \
+    php8.4-mbstring \
+    php8.4-gd \
+    php8.4-xml \
+    php8.4-zip \
+    php8.4-fpm \
+    php8.4-intl \
+    nodejs && \
+    corepack enable && \
+#Install composer dependencies
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+# Set permissions
+    chmod +x /entrypoint.sh
+
+# Add nginx and PHP config files
+COPY ./docker/default.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+WORKDIR /var/www/koillection
+
+VOLUME /uploads
+
+HEALTHCHECK CMD curl --fail http://localhost:80/ || exit 1
+
+ENTRYPOINT ["sh", "/entrypoint.sh" ]
+
+CMD [ "nginx" ]

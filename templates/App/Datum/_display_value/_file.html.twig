@@ -1,0 +1,9 @@
+<span data-value="{{ datum.originalFilename }}" data-type="string"></span>
+
+{% if datum.file is not empty %}
+    <a href="{{ asset(datum.file) }}"
+       class="file"
+       target="_blank"
+       download="{{ datum.originalFilename }}">{{ datum.originalFilename }}
+    </a> ({{ fileSize(datum.file)|bytes }})
+{% endif %}

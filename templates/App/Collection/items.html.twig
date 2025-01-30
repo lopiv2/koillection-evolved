@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.items_collection') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.collections_shared'|trans({'username':  app.request.get('username')}),
+            'image': collection.image
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    {% if collection.image != null %}
+                        <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
+                    {% else %}
+                        <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}">{{ collection.title|first|upper }}</span>
+                    {% endif %}
+                </div>
+                <div>
+                    <h1>{{ collection.title }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'count': items|length}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_items', entity: collection}) }}
+                        {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
+                    {% endif %}
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            <!-- Collection's items -->
+            {% if items is not empty %}
+                <div class="block-element">
+                    <h2 class="header">{{ 'title.items'|trans }}</h2>
+                    {{ include('App/Collection/_items_' ~ collection.itemsDisplayConfiguration.displayMode ~ '.html.twig', {'items': items}) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([
+    {'route': 'app_tools_index', 'trans': 'menu.tools'},
+    {'route': 'app_tools_index', 'trans': 'menu.inventories'}
+], inventory) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% macro recursiveCollection(collection) %}
+    {% import _self as self %}
+    <li class="inventory-collection-show">
+        <div class="card-panel {{ collection.totalCheckedItems == collection.totalItems ? 'green' : 'red' }}">
+            {{ collection.title }} -
+            <span class="js-checked-counter">{{ collection.totalCheckedItems }}</span>
+            /
+            <span
+                    class="js-total-counter">{{ collection.totalItems }}</span>
+            {% if collection.totalItems == 0 %}
+                (
+                <span class="js-rate">100</span>%)
+            {% else %}
+                (
+                <span
+                        class="js-rate">{{ ((collection.totalCheckedItems*100)/collection.totalItems)|round(2) }}</span>%)
+            {% endif %}
+        </div>
+
+        {% if collection.items|length %}
+            <ul>
+                {% for item in collection.items %}
+                    <li>
+                        <p>
+                            <label>
+                                <input type="checkbox" data-action="change->inventory#update"
+                                       data-id="{{ item.id }}" {{ item.checked ? 'checked' }}>
+                                <span>{{ item.name }}</span>
+                            </label>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if collection.children|length %}
+            <ul>
+                {% for child in collection.children %}
+                    {{ self.recursiveCollection(child) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endmacro %}
+
+{% from _self import recursiveCollection %}
+
+{% block content %}
+<div data-controller="inventory" data-inventory-id="{{ inventory.id }}">
+    <div class="collection-header">
+        <div class="title-block">
+            <div>
+                <h1>{{ inventory.name }}</h1>
+                <div data-inventory-target="pills">
+                    {{ include('App/Inventory/_nav_pills.html.twig', {'inventory': inventory}) }}
+                </div>
+            </div>
+        </div>
+
+        <div></div>
+
+        <div class="btn-holder">
+            <div>
+                {{ include('App/_partials/_icon/_delete.html.twig', {
+                    path: path('app_inventory_delete', {id: inventory.id}),
+                    message: 'message.delete.inventory'
+                }) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-element">
+            <div class="row">
+                <h2 class="header">{{ 'title.collections'|trans }}</h2>
+            </div>
+
+            <div class="row">
+                <div class="s12 m10 offset-m1">
+                    <ul id="inventory-root">
+                        <li>
+                            {% for collection in inventory.content %}
+                                <ul>
+                                    {{ recursiveCollection(collection) }}
+                                </ul>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

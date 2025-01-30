@@ -1,0 +1,121 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_loan_index', 'trans': 'menu.loans'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="title-block">
+        <div>
+            <h1>{{ 'menu.loans'|trans }}</h1>
+            <ul class="nav nav-pills">
+                <li>{{ 'counter.loan'|trans({'count': loans|length}) }}</li>
+                <li>{{ 'counter.returned'|trans({'count': returnedItems|length}) }}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-block" data-controller="tabs">
+        <div class="row">
+            <div class="tabs-block s12">
+                <ul class="tabs row">
+                    <li class="tab s12 l2 offset-l4 current" data-tabs-target="tab" data-action="click->tabs#display" data-for="active">
+                        {{ 'tab.loans'|trans }}
+                    </li>
+                    <li class="tab s12 l2" data-tabs-target="tab" data-action="click->tabs#display" data-for="returned">
+                        {{ 'tab.returned_items'|trans }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="panel current" data-tabs-target="panel" data-name="active">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.loaned_to'|trans }}</th>
+                        <th>{{ 'label.loaned_at'|trans }}</th>
+                        <th class="hide-on-small-only">{{ 'label.loaned_ago'|trans }}</th>
+                        <th>{{ 'label.actions'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loan in loans %}
+                        <tr class="list-element resize-element">
+                            <td>
+                                {% if loan.item.imageSmallThumbnail %}
+                                    <img src="{{ asset(loan.item.imageSmallThumbnail) }}" loading="lazy">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('app_item_show', {'id': loan.item.id}) }}">{{ loan.item.name }}</a>
+                            </td>
+                            <td>{{ loan.lentTo }}</td>
+                            <td>{{ loan.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                            <td class="hide-on-small-only">{{ loan.lentAt|timeAgo }}</td>
+                            <td class="table-actions">
+                                {{ include('App/_partials/_icon/_delete.html.twig', {
+                                    path: path('app_loan_delete', {id: loan.id}),
+                                    message: 'message.delete.loan'
+                                }) }}
+                                <a href="{{ path('app_loan_returned', {'id' : loan.id}) }}"
+                                   title="{{ 'tooltip.returned'|trans }}">
+                                    <i class="fa fa-check fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel" data-tabs-target="panel" data-name="returned">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ 'label.name'|trans }}</th>
+                        <th>{{ 'label.loaned_to'|trans }}</th>
+                        <th class="hide-on-small-only">{{ 'label.loaned_at'|trans }}</th>
+                        <th>{{ 'label.return_date'|trans }}</th>
+                        <th class="hide-on-small-only">{{ 'label.loan_duration'|trans }}</th>
+                        <th>{{ 'label.actions'|trans }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for returnedItem in returnedItems %}
+                        <tr class="list-element resize-element">
+                            <td>
+                                {% if returnedItem.item.imageSmallThumbnail %}
+                                    <img src="{{ asset(returnedItem.item.imageSmallThumbnail) }}" loading="lazy">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('app_item_show', {'id': returnedItem.item.id}) }}">{{ returnedItem.item.name }}</a>
+                            </td>
+                            <td>{{ returnedItem.lentTo }}</td>
+                            <td class="hide-on-small-only">{{ returnedItem.lentAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                            <td>{{ returnedItem.returnedAt|date(app.user.dateFormat|default('Y-m-d'), app.user.timezone|default('UTC')) }}</td>
+                            <td class="hide-on-small-only">{{ returnedItem.lentAt|timeDiff(returnedItem.returnedAt) }}</td>
+                            <td class="table-actions">
+                                {{ include('App/_partials/_icon/_delete.html.twig', {
+                                    path: path('app_loan_delete', {id: returnedItem.id}),
+                                    message: 'message.delete.loan'
+                                }) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,65 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': 'menu.collections_shared'|trans({'username':  app.request.get('username')}),
+            'description': 'menu.collections_shared'|trans({'username':  app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    <h1>{{ 'menu.collections'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.item'|trans({'count': itemsCounter}) }}</li>
+                        <li>{{ 'counter.collection'|trans({'count': collectionsCounter}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_collection_add') }}" class="button"
+                           title="{{ 'tooltip.add_collection'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                        <a href="{{ path('app_collection_edit_index') }}" class="button" title="{{ 'tooltip.edit'|trans }}">
+                            <i class="fa fa-pencil fa-fw"></i>
+                        </a>
+                        {{ include('App/_partials/_icon/_share.html.twig', {route: 'app_shared_collection_index'}) }}
+                        {{ include('App/_partials/_visibility.html.twig') }}
+                    {% endif %}
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block">
+            {{ include('App/Collection/_collections_' ~ getContextUser().collectionsDisplayConfiguration.displayMode ~ '.html.twig', {
+                'collections': collections,
+                'displayConfiguration': getContextUser().collectionsDisplayConfiguration
+            }) }}
+        </div>
+    </div>
+{% endblock %}

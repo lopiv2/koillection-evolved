@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="box">
+        <h1>
+            {{ 'global.welcome'|trans }}
+            <div class='logo' aria-label="Logo"></div>
+        </h1>
+
+        <div class="content">
+            <form action="{{ path("app_security_login") }}" method="post" class="body">
+                {{ include('App/Security/_locales_dropdown.html.twig') }}
+                <h2 class="header">{{ 'title.sign_in'|trans }}</h2>
+                {% if error %}
+                    <div class="error-helper">
+                        <i class="fa fa-warning fa-fw"></i>
+                        {{ error.messageKey|trans(error.messageData, 'messages') }}
+                    </div>
+                {% endif %}
+
+                <div>
+                    <div class="input-field outlined">
+                        <input type="text" id="login" name="_login" value="{{ lastUsername }}" required="required"
+                               class="form-control" placeholder=" "/>
+                        <label class="required" for="login">{{ 'label.login'|trans }}</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="input-field outlined" data-controller="show-password">
+                        <input data-show-password-target="input" type="password" id="password" name="_password"
+                               required="required" class="form-control password-input" placeholder=" "/>
+                        <label class="required" for="password">{{ 'label.password'|trans }}</label>
+                        <i class="fa fa-eye fa-fw show-password" data-action="click->show-password#updateState"></i>
+                    </div>
+                </div>
+
+                <div class="input-field input-checkbox">
+                    <label>
+                        <input type="checkbox" id="remember_me" name="_remember_me" checked="checked">
+                        <span>{{ 'label.remember_me'|trans }}</span>
+                    </label>
+                </div>
+
+                <div class="submit">
+                    <button type="submit" class="btn waves-effect waves-light right">{{ 'btn.sign_in'|trans }}</button>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            </form>
+        </div>
+    </div>
+{% endblock %}

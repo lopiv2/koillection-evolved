@@ -1,0 +1,1031 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="tr">
+  <file id="messages.en">
+    <unit id="X_Pm9um" name="message.user_added">
+      <segment state="translated">
+        <source>User {user} added</source>
+        <target>{user} kullanıcısı ekledi</target>
+      </segment>
+    </unit>
+    <unit id="Fcb_tkO" name="message.user_edited">
+      <segment state="translated">
+        <source>User {user} has been updated</source>
+        <target>{user} kullanıcısı güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="pxsaXbA" name="error.cannot_delete_admin_user">
+      <segment state="translated">
+        <source>You can't delete the Admin user</source>
+        <target>Yönetici kullanıcısını silemezsiniz</target>
+      </segment>
+    </unit>
+    <unit id="2a_RIum" name="message.user_deleted">
+      <segment state="translated">
+        <source>User {user} was deleted</source>
+        <target>{user} kullanıcısı silindi</target>
+      </segment>
+    </unit>
+    <unit id="ls5sYo8" name="message.album_added">
+      <segment state="translated">
+        <source>Album {album} has been added</source>
+        <target>{album} albümü eklendi</target>
+      </segment>
+    </unit>
+    <unit id="0lwPpH7" name="message.album_edited">
+      <segment state="translated">
+        <source>Album {album} has been updated</source>
+        <target>{album} albümü güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="oawVfJJ" name="message.album_deleted">
+      <segment state="translated">
+        <source>Album {album} has been deleted</source>
+        <target>{album} albümü silindi</target>
+      </segment>
+    </unit>
+    <unit id="s.nX0z8" name="message.choice_list_added">
+      <segment state="translated">
+        <source>Choice list {list} has been added</source>
+        <target>{list} seçenek listesi eklendi</target>
+      </segment>
+    </unit>
+    <unit id="wWQwqjC" name="message.choice_list_edited">
+      <segment state="translated">
+        <source>Choice list {list} has been updated</source>
+        <target>{list} seçenek listesi güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="aXwmQFu" name="message.choice_list_deleted">
+      <segment state="translated">
+        <source>Choice list {list} has been deleted</source>
+        <target>{list} seçenek listesi silindi</target>
+      </segment>
+    </unit>
+    <unit id="_sN4yvV" name="message.collection_added">
+      <segment state="translated">
+        <source>Collection {collection} has been added</source>
+        <target>{collection} koleksiyonu eklendi</target>
+      </segment>
+    </unit>
+    <unit id="p.bp_UN" name="message.collection_edited">
+      <segment state="translated">
+        <source>Collection {collection} has been updated</source>
+        <target>{collection} koleksiyonu güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="m3B26dq" name="message.collection_deleted">
+      <segment state="translated">
+        <source>Collection {collection} has been deleted</source>
+        <target>{collection} koleksiyonu silindi</target>
+      </segment>
+    </unit>
+    <unit id="ehI_Ih2" name="message.items_tagged">
+      <segment state="translated">
+        <source>{count, plural, one {# item tagged} other {# items tagged}}</source>
+        <target>{count, plural, one {# etiketlenmiş öğe} other {# etiketlenmiş öğe}}</target>
+      </segment>
+    </unit>
+    <unit id="rimibj4" name="message.inventory_added">
+      <segment state="translated">
+        <source>Inventory {inventory} has been created</source>
+        <target>{inventory} envanteri oluşturuldu</target>
+      </segment>
+    </unit>
+    <unit id="EYnSw0A" name="message.inventory_deleted">
+      <segment state="translated">
+        <source>Inventory {inventory} was deleted</source>
+        <target>{inventory} envanteri silindi</target>
+      </segment>
+    </unit>
+    <unit id="TMGiC1d" name="message.item_added">
+      <segment state="translated">
+        <source>Item {item} has been added</source>
+        <target>{item} öğesi eklendi</target>
+      </segment>
+    </unit>
+    <unit id="UGVMo0W" name="message.item_edited">
+      <segment state="translated">
+        <source>Item {item} has been updated</source>
+        <target>{item} öğesi güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="HgYxNo9" name="message.item_deleted">
+      <segment state="translated">
+        <source>Item {item} has been deleted</source>
+        <target>{item} öğesi silindi</target>
+      </segment>
+    </unit>
+    <unit id="AT9p7pU" name="message.loan">
+      <segment state="translated">
+        <source>Item {item} is now marked as loaned</source>
+        <target>{item} öğesi artık ödünç olarak işaretlendi</target>
+      </segment>
+    </unit>
+    <unit id="FlBhKyx" name="message.loan_canceled">
+      <segment state="translated">
+        <source>Item {item} loan has been canceled</source>
+        <target>{item} öğesinin ödünç alınması iptal edildi</target>
+      </segment>
+    </unit>
+    <unit id="zkp2rxS" name="message.item_returned">
+      <segment state="translated">
+        <source>Item {item} is now mark as returned</source>
+        <target>{item} öğesi artık iade edildi olarak işaretlendi</target>
+      </segment>
+    </unit>
+    <unit id="n5rS9vY" name="message.photo_added">
+      <segment state="translated">
+        <source>Photo {photo} has been added</source>
+        <target>{photo} fotoğrafı eklendi</target>
+      </segment>
+    </unit>
+    <unit id="hIxqW3m" name="message.photo_edited">
+      <segment state="translated">
+        <source>Photo {photo} has been updated</source>
+        <target>{photo} fotoğrafı güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="p5Rmjm9" name="message.photo_deleted">
+      <segment state="translated">
+        <source>Photo {photo} has been deleted</source>
+        <target>{photo} fotoğrafı silindi</target>
+      </segment>
+    </unit>
+    <unit id="rVN8d.E" name="message.profile_updated">
+      <segment state="translated">
+        <source>Profile has been updated</source>
+        <target>Profil güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="nNziKQf" name="message.settings_updated">
+      <segment state="translated">
+        <source>Your settings have been successfully updated</source>
+        <target>Ayarlarınız başarıyla güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="Ail0qPJ" name="message.tag_category_added">
+      <segment state="translated">
+        <source>Tag category {category} has been added</source>
+        <target>{category} etiket kategorisi eklendi</target>
+      </segment>
+    </unit>
+    <unit id="vg07kkR" name="message.tag_category_edited">
+      <segment state="translated">
+        <source>Tag category {category} has been updated</source>
+        <target>{category} etiket kategorisi güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="XlwsvOZ" name="message.tag_category_deleted">
+      <segment state="translated">
+        <source>Tag category {category} was deleted</source>
+        <target>{category} etiket kategorisi silindi</target>
+      </segment>
+    </unit>
+    <unit id="3EE._Y4" name="message.tag_edited">
+      <segment state="translated">
+        <source>Tag {tag} has been updated</source>
+        <target>{tag} etiketi güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="_PrKtDW" name="message.tag_deleted">
+      <segment state="translated">
+        <source>Tag {tag} has been deleted</source>
+        <target>{tag} etiketi silindi</target>
+      </segment>
+    </unit>
+    <unit id="QPUEgMd" name="message.unused_tags_deleted">
+      <segment state="translated">
+        <source>{count, plural, one {# tag deleted} other {# tags deleted}}</source>
+        <target>{count, plural, one {# etiket silindi} other {# etiket silindi}}</target>
+      </segment>
+    </unit>
+    <unit id="xM.mW1R" name="message.template_added">
+      <segment state="translated">
+        <source>Template {template} has been added</source>
+        <target>{template} şablonu eklendi</target>
+      </segment>
+    </unit>
+    <unit id="5d2N5Ar" name="message.template_edited">
+      <segment state="translated">
+        <source>Template {template} has been updated</source>
+        <target>{template} şablonu güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="ZMxcm6L" name="message.template_deleted">
+      <segment state="translated">
+        <source>Template {template} has been deleted</source>
+        <target>{template} şablonu silindi</target>
+      </segment>
+    </unit>
+    <unit id="9RoxCzk" name="message.wish_added">
+      <segment state="translated">
+        <source>Wish {wish} has been added</source>
+        <target>{wish} isteği eklendi</target>
+      </segment>
+    </unit>
+    <unit id="XoB_zRK" name="message.wish_edited">
+      <segment state="translated">
+        <source>Wish {wish} has been updated</source>
+        <target>{wish} isteği güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="akgCJp9" name="message.wish_deleted">
+      <segment state="translated">
+        <source>Wish {wish} has been deleted</source>
+        <target>{wish} isteği silindi</target>
+      </segment>
+    </unit>
+    <unit id="mAYxq3X" name="message.wish_transfered">
+      <segment state="translated">
+        <source>Wish {wish} was transferred to the collection {collection}</source>
+        <target>{wish}, {collection} koleksiyonuna aktarıldı</target>
+      </segment>
+    </unit>
+    <unit id="x_1ubH6" name="message.wishlist_added">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been added</source>
+        <target>{wishlist} istek listesi eklendi</target>
+      </segment>
+    </unit>
+    <unit id="NfYGrwC" name="message.wishlist_edited">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been updated</source>
+        <target>{wishlist} istek listesi güncellendi</target>
+      </segment>
+    </unit>
+    <unit id="8ujnJmR" name="message.wishlist_deleted">
+      <segment state="translated">
+        <source>Wishlist {wishlist} has been deleted</source>
+        <target>{wishlist} istek listesi silindi</target>
+      </segment>
+    </unit>
+    <unit id="zfOqV80" name="form.item_sorting.default_value">
+      <segment state="translated">
+        <source>Name (default)</source>
+        <target>Ad (varsayılan)</target>
+      </segment>
+    </unit>
+    <unit id="L3auT0N" name="global.days.sunday">
+      <segment state="translated">
+        <source>Sunday</source>
+        <target>Pazar</target>
+      </segment>
+    </unit>
+    <unit id="JnMu4pF" name="global.days.monday">
+      <segment state="translated">
+        <source>Monday</source>
+        <target>Pazartesi</target>
+      </segment>
+    </unit>
+    <unit id="qHOKUl8" name="global.days.tuesday">
+      <segment state="translated">
+        <source>Tuesday</source>
+        <target>Salı</target>
+      </segment>
+    </unit>
+    <unit id="z6ZbHnu" name="global.days.wednesday">
+      <segment state="translated">
+        <source>Wednesday</source>
+        <target>Çarşamba</target>
+      </segment>
+    </unit>
+    <unit id="9Tk.uyh" name="global.days.thursday">
+      <segment state="translated">
+        <source>Thursday</source>
+        <target>Perşembe</target>
+      </segment>
+    </unit>
+    <unit id="BQKd5g0" name="global.days.friday">
+      <segment state="translated">
+        <source>Friday</source>
+        <target>Cuma</target>
+      </segment>
+    </unit>
+    <unit id="2AVITxE" name="global.days.saturday">
+      <segment state="translated">
+        <source>Saturday</source>
+        <target>Cumartesi</target>
+      </segment>
+    </unit>
+    <unit id="s2RK8Ci" name="global.months.january">
+      <segment state="translated">
+        <source>January</source>
+        <target>Ocak</target>
+      </segment>
+    </unit>
+    <unit id="u5P6LMj" name="global.months.february">
+      <segment state="translated">
+        <source>February</source>
+        <target>Şubat</target>
+      </segment>
+    </unit>
+    <unit id="53MzqTM" name="global.months.march">
+      <segment state="translated">
+        <source>March</source>
+        <target>Mart</target>
+      </segment>
+    </unit>
+    <unit id="qIE4zZc" name="global.months.april">
+      <segment state="translated">
+        <source>April</source>
+        <target>Nisan</target>
+      </segment>
+    </unit>
+    <unit id="urcskKu" name="global.months.may">
+      <segment state="translated">
+        <source>May</source>
+        <target>Mayıs</target>
+      </segment>
+    </unit>
+    <unit id="muWiae3" name="global.months.june">
+      <segment state="translated">
+        <source>June</source>
+        <target>Haziran</target>
+      </segment>
+    </unit>
+    <unit id="thsSPXR" name="global.months.july">
+      <segment state="translated">
+        <source>July</source>
+        <target>Temmuz</target>
+      </segment>
+    </unit>
+    <unit id="t8.lqrr" name="global.months.august">
+      <segment state="translated">
+        <source>August</source>
+        <target>Ağustos</target>
+      </segment>
+    </unit>
+    <unit id="eNAAloo" name="global.months.september">
+      <segment state="translated">
+        <source>September</source>
+        <target>Eylül</target>
+      </segment>
+    </unit>
+    <unit id="G.Rp2Ak" name="global.months.october">
+      <segment state="translated">
+        <source>October</source>
+        <target>Ekim</target>
+      </segment>
+    </unit>
+    <unit id="aiK2KRz" name="global.months.november">
+      <segment state="translated">
+        <source>November</source>
+        <target>Kasım</target>
+      </segment>
+    </unit>
+    <unit id="_rddsFf" name="global.months.december">
+      <segment state="translated">
+        <source>December</source>
+        <target>Aralık</target>
+      </segment>
+    </unit>
+    <unit id="jsUGqKL" name="global.byte_abbreviation">
+      <segment state="translated">
+        <source>B</source>
+        <target>B</target>
+      </segment>
+    </unit>
+    <unit id="BNjUIYA" name="label.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Ara</target>
+      </segment>
+    </unit>
+    <unit id="GV09tqG" name="global.koillection">
+      <segment state="translated">
+        <source>Koillection</source>
+        <target>Koillection</target>
+      </segment>
+    </unit>
+    <unit id="bKzhzsy" name="global.time.ago">
+      <segment state="translated">
+        <source>{time} ago</source>
+        <target>{time} önce</target>
+      </segment>
+    </unit>
+    <unit id="kBJEdcf" name="global.time.just_now">
+      <segment state="translated">
+        <source>Just now</source>
+        <target>Az önce</target>
+      </segment>
+    </unit>
+    <unit id="4wvJrqA" name="global.time.today">
+      <segment state="translated">
+        <source>Today</source>
+        <target>Bugün</target>
+      </segment>
+    </unit>
+    <unit id="eggtiPQ" name="global.visibilities.reason.user_public">
+      <segment state="translated">
+        <source>Public - Reason : your profile is public</source>
+        <target>Herkese Açık - Neden: profiliniz herkese açık</target>
+      </segment>
+    </unit>
+    <unit id="0ceYLN2" name="global.visibilities.reason.both_public">
+      <segment state="translated">
+        <source>Public - Reason : both your profile and this page are public</source>
+        <target>Herkese Açık - Neden: hem profiliniz hem de bu sayfa herkese açık</target>
+      </segment>
+    </unit>
+    <unit id="bk8nfAS" name="global.visibilities.reason.both_private">
+      <segment state="translated">
+        <source>Private - Reason : both your profile and this page are private</source>
+        <target>Özel - Neden: hem profiliniz hem de bu sayfa gizli</target>
+      </segment>
+    </unit>
+    <unit id="ixVg6T0" name="global.visibilities.reason.user_private">
+      <segment state="translated">
+        <source>Private - Reason : your profile is private</source>
+        <target>Herkese Açık - Neden: profiliniz gizli</target>
+      </segment>
+    </unit>
+    <unit id="9OU9mZT" name="global.visibilities.reason.object_private">
+      <segment state="translated">
+        <source>Private - Reason : this page is private</source>
+        <target>Herkese Açık - Neden: bu sayfa gizli</target>
+      </segment>
+    </unit>
+    <unit id="k5.Efwd" name="global.visibilities.reason.both_internal">
+      <segment state="translated">
+        <source>Internal - Reason : both your profile and this page are internal</source>
+        <target>Dahili - Neden: hem profiliniz hem de bu sayfa dahili</target>
+      </segment>
+    </unit>
+    <unit id="KHNt07x" name="global.visibilities.reason.user_internal">
+      <segment state="translated">
+        <source>Internal - Reason : your profile is internal</source>
+        <target>Dahili - Neden : profiliniz dahili</target>
+      </segment>
+    </unit>
+    <unit id="0fTIld1" name="global.visibilities.reason.object_internal">
+      <segment state="translated">
+        <source>Internal - Reason : this page is internal</source>
+        <target>Dahili - Neden : bu sayfa dahili</target>
+      </segment>
+    </unit>
+    <unit id="wvvYSw_" name="menu.admin">
+      <segment state="translated">
+        <source>Administration</source>
+        <target>Yönetim</target>
+      </segment>
+    </unit>
+    <unit id="I4vwwju" name="title.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Genel Bakış</target>
+      </segment>
+    </unit>
+    <unit id="4fDIeO4" name="label.space_used">
+      <segment state="translated">
+        <source>{used} / {total} used</source>
+        <target>{used} / {total} kullanıldı</target>
+      </segment>
+    </unit>
+    <unit id="VrJk8jp" name="counter.without_number.items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# öğe} other {# öğe}}</target>
+      </segment>
+    </unit>
+    <unit id="jNAS_YE" name="label.space_used_by_koillection">
+      <segment state="translated">
+        <source>Total space used by Koillection</source>
+        <target>Koillection tarafından kullanılan toplam alan</target>
+      </segment>
+    </unit>
+    <unit id="_wv_IKT" name="title.config">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Yapılandırma</target>
+      </segment>
+    </unit>
+    <unit id="Z39v_44" name="label.release">
+      <segment state="translated">
+        <source>Koillection version</source>
+        <target>Koillection sürümü</target>
+      </segment>
+    </unit>
+    <unit id="eqnKfFG" name="label.outdated_release">
+      <segment state="translated">
+        <source>Version {release} is available</source>
+        <target>{release} sürümü mevcut</target>
+      </segment>
+    </unit>
+    <unit id="EvNVLVb" name="label.required_php_version">
+      <segment state="translated">
+        <source>PHP {version} is required</source>
+        <target>PHP {version} gereklidir</target>
+      </segment>
+    </unit>
+    <unit id="J1HjVfO" name="label.up_to_date_release">
+      <segment state="translated">
+        <source>The latest version is installed</source>
+        <target>En son sürüm yüklendi</target>
+      </segment>
+    </unit>
+    <unit id="fGUHPE5" name="label.php_version">
+      <segment state="translated">
+        <source>PHP version</source>
+        <target>PHP Versiyonu</target>
+      </segment>
+    </unit>
+    <unit id="nWdqGKI" name="label.symfony_version">
+      <segment state="translated">
+        <source>Symfony version</source>
+        <target>Symfony sürümü</target>
+      </segment>
+    </unit>
+    <unit id="9qQ81pM" name="label.is_opcache_available">
+      <segment state="translated">
+        <source>Opcache enabled</source>
+        <target>Opcache etkin</target>
+      </segment>
+    </unit>
+    <unit id="qnAM2jd" name="title.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>Araçlar</target>
+      </segment>
+    </unit>
+    <unit id="LSyzK7f" name="btn.export_sql">
+      <segment state="translated">
+        <source>SQL</source>
+        <target>SQL</target>
+      </segment>
+    </unit>
+    <unit id="Jd.jsk." name="btn.export_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>Görseller</target>
+      </segment>
+    </unit>
+    <unit id="FcXvWL8" name="title.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>Kullanıcı ekle</target>
+      </segment>
+    </unit>
+    <unit id="fRQmA2t" name="btn.submit">
+      <segment state="translated">
+        <source>Submit</source>
+        <target>Gönder</target>
+      </segment>
+    </unit>
+    <unit id="u5LRF8p" name="btn.cancel">
+      <segment state="translated">
+        <source>Cancel</source>
+        <target>İptal</target>
+      </segment>
+    </unit>
+    <unit id="wZpNYOE" name="label.space_used_by_user">
+      <segment state="translated">
+        <source>Total space used by user</source>
+        <target>Kullanıcı tarafından kullanılan toplam alan</target>
+      </segment>
+    </unit>
+    <unit id="1sstKF9" name="title.edit_user">
+      <segment state="translated">
+        <source>Edit user {user}</source>
+        <target>{user} kullanıcısını düzenle</target>
+      </segment>
+    </unit>
+    <unit id="fKgc.kW" name="title.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Kullanıcılar</target>
+      </segment>
+    </unit>
+    <unit id="ZouqthR" name="btn.add_user">
+      <segment state="translated">
+        <source>Add a user</source>
+        <target>Kullanıcı ekle</target>
+      </segment>
+    </unit>
+    <unit id="txRonia" name="label.id">
+      <segment state="translated">
+        <source>Id</source>
+        <target>Id</target>
+      </segment>
+    </unit>
+    <unit id="LDhDPrF" name="label.username">
+      <segment state="translated">
+        <source>Username</source>
+        <target>Kullanıcı Adı</target>
+      </segment>
+    </unit>
+    <unit id="O59lP5d" name="label.role">
+      <segment state="translated">
+        <source>Role</source>
+        <target>Rol</target>
+      </segment>
+    </unit>
+    <unit id="D2N6_cP" name="label.email">
+      <segment state="translated">
+        <source>Email</source>
+        <target>E-Posta</target>
+      </segment>
+    </unit>
+    <unit id="Tv.rI94" name="label.disk_space_used">
+      <segment state="translated">
+        <source>Disk space used</source>
+        <target>Kullanılan disk alanı</target>
+      </segment>
+    </unit>
+    <unit id="p1Fs6iF" name="label.disk_space_allowed">
+      <segment state="translated">
+        <source>Disk space allowed</source>
+        <target>İzin verilen disk alanı</target>
+      </segment>
+    </unit>
+    <unit id="vMjoUw7" name="label.last_date_of_activity">
+      <segment state="translated">
+        <source>Last activity</source>
+        <target>Son etkinlik</target>
+      </segment>
+    </unit>
+    <unit id="zldXQq6" name="label.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>İşlemler</target>
+      </segment>
+    </unit>
+    <unit id="nbcWSI3" name="tooltip.edit">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="335X_OI" name="tab.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Genel Bakış</target>
+      </segment>
+    </unit>
+    <unit id="MJ22R1T" name="tab.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Kullanıcılar</target>
+      </segment>
+    </unit>
+    <unit id="rd2X72s" name="message.delete.photo">
+      <segment state="translated">
+        <source>Are you sure you want to delete this photo ? It will be permanently lost...</source>
+        <target>Bu fotoğrafı silmek istediğinizden emin misiniz? Kalıcı olarak kaybolacak...</target>
+      </segment>
+    </unit>
+    <unit id="UrRn8xj" name="label.title">
+      <segment state="translated">
+        <source>Title</source>
+        <target>Başlık</target>
+      </segment>
+    </unit>
+    <unit id="H3WsEKh" name="label.visibility">
+      <segment state="translated">
+        <source>Visibility</source>
+        <target>Görünürlülük</target>
+      </segment>
+    </unit>
+    <unit id="pRl.hWU" name="title.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Yeni bir albüm ekle</target>
+      </segment>
+    </unit>
+    <unit id="domeXiF" name="title.edit_album">
+      <segment state="translated">
+        <source>Edit album {title}</source>
+        <target>{title} albümünü düzenle</target>
+      </segment>
+    </unit>
+    <unit id="nQDmBI4" name="menu.collections_shared">
+      <segment state="translated">
+        <source>{username}'s collection</source>
+        <target>{username} kullanıcısının koleksiyonu</target>
+      </segment>
+    </unit>
+    <unit id="5hMk7ux" name="menu.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albümler</target>
+      </segment>
+    </unit>
+    <unit id="NOenNu3" name="tooltip.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Yeni bir albüm ekle</target>
+      </segment>
+    </unit>
+    <unit id="A5gFwZv" name="filter.by_name">
+      <segment state="translated">
+        <source>Filter by name</source>
+        <target>İsme göre filtrele</target>
+      </segment>
+    </unit>
+    <unit id="AHajX3P" name="tooltip.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Yeni bir fotoğraf ekle</target>
+      </segment>
+    </unit>
+    <unit id="ryRhoHH" name="title.album_children">
+      <segment state="translated">
+        <source>Sub-albums</source>
+        <target>Alt albümler</target>
+      </segment>
+    </unit>
+    <unit id="wP6FDOU" name="title.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Fotoğraflar</target>
+      </segment>
+    </unit>
+    <unit id="w9FF849" name="title.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Seçenekler</target>
+      </segment>
+    </unit>
+    <unit id="CYUJ8qZ" name="btn.add_choice">
+      <segment state="translated">
+        <source>Add a new choice</source>
+        <target>Yeni bir seçenek ekle</target>
+      </segment>
+    </unit>
+    <unit id="oOiO8Dn" name="label.choice">
+      <segment state="translated">
+        <source>Choice</source>
+        <target>Seçenek</target>
+      </segment>
+    </unit>
+    <unit id="uLlCnaG" name="title.new_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Yeni bir seçenek listesi ekle</target>
+      </segment>
+    </unit>
+    <unit id="60Mvg7w" name="title.edit_choice_list">
+      <segment state="translated">
+        <source>Edit choice list {list}</source>
+        <target>{list} seçenek listesini düzenle</target>
+      </segment>
+    </unit>
+    <unit id="em8w1x." name="menu.choice_lists">
+      <segment state="translated">
+        <source>Choice lists</source>
+        <target>Seçenek listeleri</target>
+      </segment>
+    </unit>
+    <unit id="SMPEMjp" name="counter.choice_lists">
+      <segment state="translated">
+        <source>{count, plural, one {# choice list} other {# choice lists}}</source>
+        <target>{count, plural, one {# seçenek listesi} other {# seçenek listesi}}</target>
+      </segment>
+    </unit>
+    <unit id="3yuF9Sl" name="tooltip.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice lists</source>
+        <target>Yeni bir seçenek listesi ekle</target>
+      </segment>
+    </unit>
+    <unit id="ysOvPSq" name="label.name">
+      <segment state="translated">
+        <source>Name</source>
+        <target>Ad</target>
+      </segment>
+    </unit>
+    <unit id="Mr44cEu" name="label.choices">
+      <segment state="translated">
+        <source>Choices</source>
+        <target>Seçenekler</target>
+      </segment>
+    </unit>
+    <unit id="I5NrvAz" name="collection.items_settings">
+      <segment state="translated">
+        <source>Items settings</source>
+        <target>Öğe ayarları</target>
+      </segment>
+    </unit>
+    <unit id=".eH3OZY" name="counter.item">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# öğe} other {# öğe}}</target>
+      </segment>
+    </unit>
+    <unit id="F5Sk8YT" name="filter.title.actions">
+      <segment state="translated">
+        <source>Actions</source>
+        <target>İşlemler</target>
+      </segment>
+    </unit>
+    <unit id="IxgpiDC" name="counter.total_items">
+      <segment state="translated">
+        <source>{count, plural, one {# item} other {# items}}</source>
+        <target>{count, plural, one {# öğe} other {# öğe}}</target>
+      </segment>
+    </unit>
+    <unit id="bWfooH2" name="title.item_images">
+      <segment state="translated">
+        <source>Images</source>
+        <target>Görseller</target>
+      </segment>
+    </unit>
+    <unit id="k6VxCsO" name="menu.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Ara</target>
+      </segment>
+    </unit>
+    <unit id="Gki98oO" name="title.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albümler</target>
+      </segment>
+    </unit>
+    <unit id="xw23vtl" name="message.search_empty">
+      <segment state="translated">
+        <source>No results</source>
+        <target>Sonuç bulunamadı</target>
+      </segment>
+    </unit>
+    <unit id="W6Rvzmb" name="menu.tools">
+      <segment state="translated">
+        <source>Tools</source>
+        <target>Araçlar</target>
+      </segment>
+    </unit>
+    <unit id="ZS8DP_P" name="breadcrumb.add_album">
+      <segment state="translated">
+        <source>Add a new album</source>
+        <target>Yeni bir albüm ekle</target>
+      </segment>
+    </unit>
+    <unit id="HN3MXIl" name="breadcrumb.add_photo">
+      <segment state="translated">
+        <source>Add a new photo</source>
+        <target>Yeni bir fotoğraf ekle</target>
+      </segment>
+    </unit>
+    <unit id="FBXvLM8" name="breadcrumb.edit_album">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="4FXosb_" name="breadcrumb.edit_collection">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="dQjPnaL" name="breadcrumb.edit_template">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="wJbJaxc" name="breadcrumb.edit_item">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="sARt1zq" name="breadcrumb.edit_photo">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="YAIWLja" name="breadcrumb.edit_tag">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="MK15Ex5" name="breadcrumb.edit_wish">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="bzp39NU" name="breadcrumb.edit_wishlist">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="rW7Hxqk" name="breadcrumb.edit_tag_category">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="U8IBiON" name="menu.overview">
+      <segment state="translated">
+        <source>Overview</source>
+        <target>Genel Bakış</target>
+      </segment>
+    </unit>
+    <unit id="GXrTvzK" name="label.albums">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albümler</target>
+      </segment>
+    </unit>
+    <unit id="VDd2HS6" name="label.albums_feature_enabled">
+      <segment state="translated">
+        <source>Albums</source>
+        <target>Albümler</target>
+      </segment>
+    </unit>
+    <unit id="yXp44Ls" name="breadcrumb.add_choice_list">
+      <segment state="translated">
+        <source>Add a new choice list</source>
+        <target>Yeni bir seçenek listesi ekle</target>
+      </segment>
+    </unit>
+    <unit id="nMiYLFJ" name="breadcrumb.edit_choice_list">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="rsBlJD0" name="label.photos">
+      <segment state="translated">
+        <source>Photos</source>
+        <target>Fotoğraflar</target>
+      </segment>
+    </unit>
+    <unit id="z6Bkyzi" name="breadcrumb.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="FGS9ySo" name="title.edit_collections_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="hJBVuAk" name="breadcrumb.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="DomzBkb" name="title.edit_albums_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="CLs5oQy" name="breadcrumb.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="WEd3Zlc" name="title.edit_wishlists_index">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="0vnK4DY" name="menu.users">
+      <segment state="translated">
+        <source>Users</source>
+        <target>Kullanıcılar</target>
+      </segment>
+    </unit>
+    <unit id="wcFJTRH" name="tab.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Yapılandırma</target>
+      </segment>
+    </unit>
+    <unit id="l4xWhN8" name="menu.configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Yapılandırma</target>
+      </segment>
+    </unit>
+    <unit id="4Q5t9Zu" name="title.edit_configuration">
+      <segment state="translated">
+        <source>Configuration</source>
+        <target>Yapılandırma</target>
+      </segment>
+    </unit>
+    <unit id="lJcMu7j" name="breadcrumb.edit_scraper">
+      <segment state="translated">
+        <source>Edit</source>
+        <target>Düzenle</target>
+      </segment>
+    </unit>
+    <unit id="Lpjg5ZJ" name="global.entities.search">
+      <segment state="translated">
+        <source>Search</source>
+        <target>Ara</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_tag_index', 'trans': 'menu.tags'}], item, null, tag) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': renderTitle(breadcrumb),
+            'description': 'menu.tags_shared'|trans({'username':  app.request.get('username')}),
+            'image': item.imageSmallThumbnail
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {{ include('App/Item/_content.html.twig', { displayCollection: true }) }}
+
+    <div class="navigation-block" data-controller="swipe keyboard-navigation">
+        {% if previousItem is not null %}
+            <a data-swipe-target="previous" data-keyboard-navigation-target="previous" href="{{ path('app_tag_item_show'|applyContext, {itemId: previousItem.id, tagId: tag.id}) }}">
+                <span class="unbreakable">
+                    <i class="fa fa-angle-left fa-fw"></i>{{ previousItem.name|u.truncate(30, '...') }}
+                </span>
+            </a>
+        {% endif %}
+        {% if previousItem is not null and previousItem is not null %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% endif %}
+        {% if nextItem is not null %}
+            <a data-swipe-target="next" data-keyboard-navigation-target="next" href="{{ path('app_tag_item_show'|applyContext, {itemId: nextItem.id, tagId: tag.id}) }}">
+                <span class="unbreakable">
+                    {{ nextItem.name|u.truncate(30, '...') }}<i class="fa fa-angle-right fa-fw"></i>
+                </span>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {{ renderFooter(item) }}
+{% endblock %}

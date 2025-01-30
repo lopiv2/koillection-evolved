@@ -1,0 +1,25 @@
+<div class="tabs-block">
+    <ul class="nav nav-pills">
+        <li class="tab {{ current == "overview" ? 'current' }}">
+            <a href="{{ path('app_admin_index') }}">
+                <span>{{ 'tab.overview'|trans }}</span>
+            </a>
+        </li>
+        <li class="tab {{ current == "users" ? 'current' }}">
+            <a href="{{ path('app_admin_user_index') }}">
+                <span>{{ 'tab.users'|trans }}</span>
+            </a>
+        </li>
+        <li class="tab {{ current == "configuration" ? 'current' }}">
+            <a href="{{ path('app_admin_configuration_index') }}">
+                <span>{{ 'tab.configuration'|trans }}</span>
+            </a>
+        </li>
+        <li class="tab {{ current == "errors" ? 'current' }}">
+            <a href="{{ path('app_admin_error_index') }}">
+                <span>{{ 'tab.errors'|trans }}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+

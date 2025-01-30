@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.collections'}], collection, 'breadcrumb.history_collection') %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+{% block content %}
+    <div class="collection-header">
+        <div class="title-block">
+            <div>
+                {% if collection.image != null %}
+                    <img class="thumbnail avatar" src="{{ preload(asset(collection.image), {as: 'image'}) }}">
+                {% else %}
+                    <span class="thumbnail color-avatar circle avatar color-{{ collection.color }}"
+                          aria-hidden="true">{{ collection.title|first|upper }}</span>
+                {% endif %}
+            </div>
+            <div>
+                <h1>{{ collection.title }}</h1>
+                <ul class="nav nav-pills">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-block">
+        {{ include('App/History/_logs_table.html.twig', {'logs': logs}) }}
+    </div>
+{% endblock %}

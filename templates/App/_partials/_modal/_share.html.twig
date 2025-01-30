@@ -1,0 +1,22 @@
+<div id="modal-share" data-controller="modal--share"
+     class="modal modal-custom"
+     tabindex="-1"
+     role="dialog"
+     data-user-visibility="{{ app.user.visibility }}"
+     data-message-private-user="{{ 'message.user_is_private'|trans }}"
+     data-message-private-entity="{{ 'message.user_is_private'|trans }}"
+     data-message-share-link="{{ 'message.share_link'|trans }}"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">{{ 'modal.title.share'|trans }}</span>
+                <i class="fa fa-close fa-fw modal-action modal-close right"></i>
+            </div>
+
+            <div class="modal-body">
+                <p data-modal--share-target="message"></p>
+            </div>
+        </div>
+    </div>
+</div>

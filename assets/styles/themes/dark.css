@@ -1,0 +1,118 @@
+:root {
+    /* Should be the same as --background-color */
+    --surface-color: #2a2a2a;
+    --background-color: #2a2a2a;
+    --background-color-light: #5e5e5e;
+
+    /* Mainly used for menu and header color */
+    --background-color-dark: #222222;
+
+    --font-color-main: #cccccc;
+    --font-color-medium: #cccccc;
+    --font-color-light: #7d7f82;
+    --font-color-lightest: #7d7f82;
+
+    /* Buttons, hovers */
+    --primary-color: #009688;
+    --primary-color-light: #1AB0A2;
+    --primary-color-lightest: #80cbc4;
+    --primary-color-dark: #006355;
+
+    /* Mainly used for icons and titles */
+    --secondary-color: #009688;
+
+    /* Cancel buttons and error messages */
+    --warning-color: #e53935;
+}
+
+.avatar.circle.color-avatar, .user-avatar.circle {
+    filter: brightness(80%);
+}
+
+/** PRIMARY COLOR **/
+.breadcrumb .last, a, .autocomplete-content li .highlight, .autocomplete-result a b, .breadcrumb-item.active a, .navigation-block i,
+.fa-long-arrow-down.active, .fa-long-arrow-up.active {
+    color: var(--primary-color);
+}
+
+.sidebar-element.current a, .sidebar-element a:hover,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option[aria-selected="true"],
+.sidebar-wrapper .header-logo:hover, .header-profile .down-background, .btn, .btn:focus, .btn:hover,
+.modal-custom .modal-header, .box h1, .box .logo, .dropdown-menu li:hover {
+    background-color: var(--primary-color);
+}
+
+.tabs-block li.tab.current {
+    border-color: var(--primary-color);;
+}
+
+/** SECONDARY COLOR **/
+.btn-holder .button, .btn-holder .button i, .table-actions i,
+.header {
+    color: var(--secondary-color);
+}
+
+html.loading:before {
+    background-color: var(--secondary-color);
+}
+
+/** WARNING COLOR **/
+.btn-cancel, .btn-cancel:focus, .btn-cancel:hover, .toast.error {
+    background-color: var(--warning-color);
+}
+
+.error-helper, .fa-warning:before, .helper-text-error {
+    color: var(--warning-color);
+}
+
+/** BACKGROUND COLOR **/
+body, .main, .header-logo, .nav-wrapper #search_term, .sidebar-element.separate-item div,
+.box .content, .modal, .input-field input, .input-field textarea, .autocomplete-content, thead th,
+.select2-container--default .select2-selection--single, .select2-dropdown, .select2-search__field, .select2-container--default .select2-selection--multiple {
+    background-color: var(--background-color);
+}
+
+/** FONT COLOR MEDIUM **/
+i, body, .sidebar-element span, .header-logo a, .toast {
+    color: var(--font-color-medium);
+}
+
+input {
+    caret-color: var(--font-color-medium);
+}
+
+/** FONT COLOR LIGHT **/
+.sidebar-element.separate-item, .sidebar-element.separate-item div, .autocomplete-results li, .select2, .input-field.outlined input, .input-field.outlined textarea, .dropdown-menu li, .dropdown-menu, .search-block {
+    border-color: var(--font-color-light);
+}
+
+.collections .collection-element .collection-stats, footer, .image-label, .datum-row span.country-name,
+.breadcrumb-item a, .input-field > label, .fa-long-arrow-down, .fa-long-arrow-up {
+    color: var(--font-color-light);
+}
+
+/** FONT COLOR MAIN **/
+.autocomplete-results li span, .autocomplete-result a,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.tabs-block li.tab, .tabs-block li.tab a, .autocomplete-results li span, .unauthorized .header,
+.box h1, .dropdown-menu a
+{
+    color: var(--font-color-main);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b  {
+    border-color: var(--font-color-main) transparent transparent;
+}
+
+/** BACKGROUND COLOR DARK **/
+header, .sidebar-wrapper, .content-wrapper .btn-holder input[type="text"], .sidebar-element.separate-item div,
+table.striped > tbody > tr:nth-child(2n+1), .dropdown-menu li {
+    background-color: var(--background-color-dark);
+}
+
+
+/** BACKGROUND COLOR LIGHT **/
+.autocomplete-results li {
+    background-color: var(--background-color-light);
+}
