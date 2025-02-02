@@ -188,6 +188,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
     #[Groups(['user:read', 'user:write'])]
+    private bool $feedsFeatureEnabled = true;
+
+    #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
     private bool $loansFeatureEnabled = true;
 
     #[ORM\Column(type: Types::BOOLEAN, options: ['default' => 1])]
@@ -592,6 +596,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setAlbumsFeatureEnabled(bool $albumsFeatureEnabled): User
     {
         $this->albumsFeatureEnabled = $albumsFeatureEnabled;
+
+        return $this;
+    }
+
+    public function isFeedsFeatureEnabled(): bool
+    {
+        return $this->feedsFeatureEnabled;
+    }
+
+    public function setFeedsFeatureEnabled(bool $feedsFeatureEnabled): User
+    {
+        $this->feedsFeatureEnabled = $feedsFeatureEnabled;
 
         return $this;
     }

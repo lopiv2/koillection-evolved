@@ -33,6 +33,7 @@ final class UserFactory extends PersistentProxyObjectFactory
             'tagsFeatureEnabled' => true,
             'signsFeatureEnabled' => true,
             'albumsFeatureEnabled' => true,
+            'feedsFeatureEnabled' => true,
             'loansFeatureEnabled' => true,
             'templatesFeatureEnabled' => true,
             'historyFeatureEnabled' => true,

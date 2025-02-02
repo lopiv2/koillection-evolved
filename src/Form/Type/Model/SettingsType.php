@@ -69,6 +69,9 @@ class SettingsType extends AbstractType
             ->add('albumsFeatureEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('feedsFeatureEnabled', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('loansFeatureEnabled', CheckboxType::class, [
                 'required' => false,
             ])

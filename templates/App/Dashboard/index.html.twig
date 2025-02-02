@@ -3,73 +3,113 @@
 {% set breadcrumb = buildBreadcrumb([{'route': 'app_collection_index', 'trans': 'menu.dashboard'}]) %}
 
 {% block title %}
-    {{ renderTitle(breadcrumb) }}
+	{{ renderTitle(breadcrumb) }}
 {% endblock %}
 
 {% block breadcrumb %}
-    {{ renderBreadcrumb(breadcrumb) }}
+	{{ renderBreadcrumb(breadcrumb) }}
 {% endblock %}
 
 {% block content %}
-    <div class="dashboard-container">
-        <h1>Welcome to your Dashboard</h1>
+	<div class="dashboard-container">
+		<h1>{{ 'menu.welcome_dashboard' | trans }}</h1>
 
-        <!-- Fila con tres columnas -->
-        <div class="row">
-            <!-- Dinero gastado en colecciones -->
-            <div class="col s12 m6 l4">
-                <div class="card shadow-2">
-                    <div class="card-content">
-                        <div class="d-flex align-items-center justify-content-center text-center">
-                            <i class="fa fa-dollar-sign fa-2x green-text me-3"></i>
-                            <div>
-                                <h5 class="card-title">Total Spent</h5>
-                                {% for currency, amount in totalSpent %}
-                                    <p class="card-text fs-5 fw-bold text-dark">
-                                        {{ amount | number_format(2, '.', ',') }} {{ currency }}
-                                    </p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Número de artículos totales -->
-            <div class="col s12 m6 l4">
-                <div class="card shadow-2">
-                    <div class="card-content">
-                        <div class="d-flex align-items-center justify-content-center text-center">
-                            <i class="fa fa-pencil fa-2x blue-text me-3"></i>
-                            <div>
-                                <h5 class="card-title">Total Items</h5>
-                                <p class="card-text fs-5 fw-bold text-dark">{{ itemsCounter }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+		<!-- Fila con tres columnas -->
+		<div
+			class="row">
+			<!-- Dinero gastado en colecciones -->
+			<div class="col s12 m6 l4" style="padding: 10px;">
+				<div class="card z-depth-3">
+					<div class="card-content">
+						<div class="d-flex align-items-center justify-content-center text-center">
+							<i class="bi bi-coin" style="color: gold; font-size: 4rem;"></i>
+							<div>
+								<h5 class="card-title">{{ 'menu.total_spent' | trans }}</h5>
+								{% for currency, amount in totalSpent %}
+									<b>
+										<p class="card-text fs-5 fw-bold text-dark">
+											{{ amount | number_format(2, '.', ',') }}
+											{{ currency }}
+										</p>
+									</b>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            <!-- Número de colecciones totales -->
-            <div class="col s12 m6 l4">
-                <div class="card shadow-2">
-                    <div class="card-content">
-                        <div class="d-flex align-items-center justify-content-center text-center">
-                            <i class="fa fa-pencil fa-2x yellow-text me-3"></i>
-                            <div>
-                                <h5 class="card-title">Total Collections</h5>
-                                <p class="card-text fs-5 fw-bold text-dark">{{ collectionsCounter }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+			<!-- Número de artículos totales -->
+			<div class="col s12 m6 l4" style="padding: 10px;">
+				<div class="card z-depth-3">
+					<div class="card-content">
+						<div class="d-flex align-items-center justify-content-center text-center">
+							<i class="bi bi-stack" style="color: green; font-size: 4rem;"></i>
+							<div>
+								<h5 class="card-title">{{ 'form.item_sorting.number_of_items' | trans }}</h5>
+								<b>
+									<p class="card-text fs-5 fw-bold text-dark">{{ itemsCounter }}</p>
+								</b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        <!-- Estadísticas adicionales -->
-        <div class="additional-stats mt-4">
-            <h2>Additional Stats</h2>
-            <p>Display any extra relevant information you want in your dashboard.</p>
-        </div>
-    </div>
+			<!-- Número de colecciones totales -->
+			<div class="col s12 m6 l4" style="padding: 10px;">
+				<div
+					class="card z-depth-3">
+					<!-- Aplica la clase z-depth aquí -->
+					<div class="card-content">
+						<div class="d-flex align-items-center justify-content-center text-center">
+							<i class="bi bi-collection-fill" style="color: blue; font-size: 4rem;"></i>
+							<div>
+								<h5 class="card-title">{{ 'menu.total_collections' | trans }}</h5>
+								<b>
+									<p class="card-text fs-5 fw-bold text-dark">{{ collectionsCounter }}</p>
+								</b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Bloque de Fuentes de Feeds estilo Tabs (Slide Show) -->
+		<div class="content-block feeds" data-controller="tabs">
+			<div class="block-element">
+				<h2 class="statistics-title">{{ 'menu.feed_sources' | trans }}</h2>
+				<div
+					class="tabs-block">
+					<!-- Lista de pestañas -->
+					<ul class="tabs">
+						{% for source in feedSources %}
+							<li class="tab {{ loop.first ? 'current' }}" data-tabs-target="tab" data-action="click->tabs#display" data-for="source_{{ source.id }}">
+								{{ source.name }}
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+				<!-- Paneles para cada fuente -->
+				{% for source in feedSources %}
+					<div
+						data-controller="feed--source" data-tabs-target="panel" data-source-id="{{ source.id }}" class="panel feed-panel {{ loop.first ? 'current' }}" data-action="resize@window->feed--source#resize">
+						{# Aquí puedes incluir el contenido inicial o un mensaje de carga #}
+						<p class="center-align">Seleccione esta pestaña para ver los feeds de
+							{{ source.name }}.</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<!-- Estadísticas adicionales -->
+		<div class="additional-stats mt-4">
+			<h2>Additional Stats</h2>
+			<p>Display any extra relevant information you want in your dashboard.</p>
+		</div>
+	</div>
 {% endblock %}

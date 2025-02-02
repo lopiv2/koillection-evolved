@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% set breadcrumb = buildBreadcrumb([{'route': 'app_feed_index', 'trans': 'menu.feeds'}]) %}
+
+{% block title %}
+    {{ renderTitle(breadcrumb) }}
+{% endblock %}
+
+{% block meta %}
+    {% if context == 'shared' %}
+        {{ include('App/_partials/_meta.html.twig', {
+            'title': 'menu.feeds_shared'|trans({'username': app.request.get('username')}),
+            'description': 'menu.feeds_shared'|trans({'username': app.request.get('username')})
+        }) }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumb %}
+    {{ renderBreadcrumb(breadcrumb) }}
+{% endblock %}
+
+
+{% block content %}
+    <div data-controller="filter">
+        <div class="collection-header">
+            <div class="title-block">
+                <div>
+                    <h1>{{ 'menu.feeds'|trans }}</h1>
+                    <ul class="nav nav-pills">
+                        <li>{{ 'counter.feedSources'|trans({'count': feedSourcesCounter}) }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="btn-holder">
+                <div>
+                    {% if context == 'default' %}
+                        <a href="{{ path('app_feed_add') }}" class="button"
+                           title="{{ 'tooltip.add_feed'|trans }}">
+                            <i class="fa fa-folder fa-fw"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                <div>
+                    <input data-action="keyup->filter#filter" class="filter-input" autocomplete="off" type="text"
+                           placeholder="{{ 'filter.by_name'|trans }}"/>
+                </div>
+            </div>
+        </div>
+        <div class="content-block">
+            {{ include('App/Feed/_feeds_list.html.twig', {
+                'feeds': feedSources
+            }) }}
+        </div>
+	</div>
+{% endblock %}

@@ -28,7 +28,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class CollectionController extends AbstractController
 {
     #[Route(path: '/collections', name: 'app_collection_index', methods: ['GET'])]
-    #[Route(path: '/collections', name: 'app_homepage', methods: ['GET'])]
     #[Route(path: '/user/{username}/collections', name: 'app_shared_collection_index', methods: ['GET'])]
     #[Route(path: '/user/{username}', name: 'app_shared_homepage', methods: ['GET'])]
     public function index(CollectionRepository $collectionRepository, CachedValuesGetter $cachedValuesGetter): Response

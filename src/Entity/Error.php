@@ -32,7 +32,7 @@ class Error
     private string $levelName;
 
     #[ORM\Column(type: Types::JSON)]
-    private array $trace;
+    private ?array $trace = [];
 
     #[ORM\Column(type: Types::INTEGER)]
     private int $count;
@@ -92,15 +92,14 @@ class Error
         return $this;
     }
 
-    public function getTrace(): array
+    public function getTrace(): ?array
     {
         return $this->trace;
     }
 
-    public function setTrace(array $trace): Error
+    public function setTrace(?array $trace): self
     {
-        $this->trace = $trace;
-
+        $this->trace = empty($trace) ? [] : $trace;
         return $this;
     }
 

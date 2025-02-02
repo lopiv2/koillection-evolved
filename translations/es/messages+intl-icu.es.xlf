@@ -781,6 +781,12 @@
         <target>Añadir nuevo álbum</target>
       </segment>
     </unit>
+    <unit id="UAtnGi3" name="tooltip.add_feed">
+      <segment state="translated">
+        <source>Add a new RSS Feed</source>
+        <target>Añadir nueva fuente RSS</target>
+      </segment>
+    </unit>
     <unit id="A5gFwZv" name="filter.by_name">
       <segment state="translated">
         <source>Filter by name</source>
@@ -857,6 +863,12 @@
       <segment state="translated">
         <source>Name</source>
         <target>Nombre</target>
+      </segment>
+    </unit>
+    <unit id="keUvBSF" name="label.logo">
+      <segment state="translated">
+        <source>Logo</source>
+        <target>Logo</target>
       </segment>
     </unit>
     <unit id="Mr44cEu" name="label.choices">
@@ -959,6 +971,24 @@
     <segment state="translated">
         <source>Dashboard</source>
         <target>Panel de control</target>
+    </segment>
+    </unit>
+    <unit id="GR7JTht" name="menu.welcome_dashboard">
+    <segment state="translated">
+        <source>Welcome to your Dashboard</source>
+        <target>Bienvenido a su Panel de control</target>
+    </segment>
+    </unit>
+    <unit id="CR9JEht" name="menu.total_spent">
+    <segment state="translated">
+        <source>Total money spent</source>
+        <target>Dinero total gastado</target>
+    </segment>
+    </unit>
+    <unit id="VC6JTlo" name="menu.total_collections">
+    <segment state="translated">
+        <source>Total Collections</source>
+        <target>Colecciones totales</target>
     </segment>
     </unit>
     <unit id="Ttj5ZLt" name="counter.collection">
@@ -1205,6 +1235,18 @@
       <segment state="translated">
         <source>Loans</source>
         <target>Préstamos</target>
+      </segment>
+    </unit>
+    <unit id="BFEXSop" name="menu.feeds"> 
+      <segment state="translated">
+        <source>RSS Feeds</source>
+        <target>Fuentes RSS</target>
+      </segment>
+    </unit>
+    <unit id="1FZGNj5" name="counter.feedSources">
+      <segment state="translated">
+        <source>{count, plural, one {# RSS Feed} other {# RSS Feeds}}</source>
+        <target>{count, plural, one {# Fuente RSS} other {# Fuentes RSS}}</target>
       </segment>
     </unit>
     <unit id="nlD7D9j" name="counter.loan">
@@ -3443,6 +3485,12 @@
       <segment state="translated">
         <source>Scraping</source>
         <target>Escrapeando</target>
+      </segment>
+    </unit>
+    <unit id="k4Ssjg5" name="label.feeds_feature_enabled">
+      <segment state="translated">
+        <source>RSS Feeds</source>
+        <target>Fuentes RSS</target>
       </segment>
     </unit>
     <unit id="zrNqfUb" name="label.scrap_name">

@@ -1,0 +1,50 @@
+<table class="highlight children-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ 'label.name'|trans }}</th>
+            <th class="center hide-on-small-and-down">{{ 'label.url'|trans }}</th>
+            <th class="center">{{ 'label.logo'|trans }}</th>
+            <th class="center">{{ 'label.visibility'|trans }}</th>
+            <th class="center">{{ 'label.actions'|trans }}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for feed in feeds %}
+        {% set link = path('app_feed_show', {'id': feed.id}) %}
+        <tr class="list-element resize-element" data-title="{{ feed.title }}" data-filter-target="element">
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {% if feed.image %}
+                    <img src="{{ asset(feed.image) }}" loading="lazy">
+                {% endif %}
+            </td>
+            <td>
+                <a class="table-link" href="{{ link }}"></a>
+                {{ feed.title|u.truncate(50, '...') }}
+            </td>
+            <td class="center hide-on-small-and-down">
+                <a class="table-link" href="{{ link }}"></a>
+                {{ feed.url }}
+            </td>
+            <td class="center">
+                <a class="table-link" href="{{ link }}"></a>
+                {{ feed.articleCount|default(0) }}
+            </td>
+            <td class="center">
+                {% include 'App/_partials/_visibility.html.twig' with {'visibility': feed.finalVisibility} only %}
+            </td>
+            <td class="table-actions center">
+                <a href="{{ path('app_feed_edit', {id: feed.id}) }}" title="{{ 'tooltip.edit'|trans }}">
+                    <i class="fa fa-pencil fa-fw"></i>
+                </a>
+                {% include 'App/_partials/_icon/_delete.html.twig' with {
+                    path: path('app_feed_delete', {id: feed.id}),
+                    message: 'message.delete.feed'
+                } only %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

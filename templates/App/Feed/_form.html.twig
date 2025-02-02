@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+<div class="content-block">
+    <div class="row">
+        <h2 class="header s12 l5 offset-l1 xl4 offset-xl2">{{ 'title.feed_sources'|trans }}</h2>
+    </div>
+    {{ form_row(form.file) }}
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.name, {'label': 'label.name'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="s12 l5 offset-l1 xl4 offset-xl2">
+            {{ form_row(form.url, {'label': 'label.url'}) }}
+        </div>
+    </div>
+
+</div>
+
+<div class="center-align form-btn-holder">
+    <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
+    <a href="{{ path('app_feed_index') }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
+</div>
+{{ form_end(form) }}
